@@ -7,6 +7,20 @@
   <style>
     html, body { height: 100%; overflow: hidden; }
     body { margin: 0; background: #111; color: #fff; font-family: system-ui, Arial, sans-serif; -webkit-user-select:none; user-select:none; }
+    <!-- Controles mínimos del Playbook -->
+<div id="controls" style="display:flex; gap:12px; align-items:center; padding:8px; background:#111; color:#fff; font-family:Arial; font-size:14px; position:sticky; top:0; z-index:1000; width:100%;">
+  <label for="play-select">Jugada:</label>
+  <select id="play-select" style="cursor:pointer;"></select>
+
+  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+    <input type="checkbox" id="mode-toggle">
+    Modo Juego (desmarcado = Demo)
+  </label>
+
+  <button id="reset-btn" style="cursor:pointer;">Reiniciar</button>
+</div>
+
+
     #topbar { display:flex; gap:12px; align-items:center; padding:8px 12px; background:#1b1f24; position:sticky; top:0; z-index:10; flex-wrap:wrap; }
     #status { opacity:.8; font-size:14px; }
     #panel-admin { position:fixed; right:12px; top:52px; width:340px; max-height:72vh; overflow:auto;
