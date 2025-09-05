@@ -1,5 +1,5 @@
 // TEST: Leer archivo plays.json y mostrarlo en consola
-fetch('public/data/plays.json')
+fetch('data/plays.json')
   .then(response => response.json())
   .then(data => {
     console.log("Jugadas cargadas correctamente:", data);
