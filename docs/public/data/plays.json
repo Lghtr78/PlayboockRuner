@@ -1,0 +1,54 @@
+{
+  "plays": [
+    {
+      "id": "horns-1",
+      "name": "Horns – Entrada básica",
+      "description": "Entrada con pívots altos y corte 1-4",
+      "initialPositions": {
+        "1": {"x": 0.15, "y": 0.85},
+        "2": {"x": 0.35, "y": 0.55},
+        "3": {"x": 0.65, "y": 0.55},
+        "4": {"x": 0.25, "y": 0.20},
+        "5": {"x": 0.75, "y": 0.20}
+      },
+      "steps": [
+        {
+          "label": "1 sube y pasa a 4",
+          "moves": [
+            {
+              "player": "1",
+              "path": [
+                {"x": 0.15, "y": 0.65},
+                {"x": 0.20, "y": 0.45}
+              ]
+            }
+          ],
+          "passes": [
+            {"from": "1", "to": "4"}
+          ],
+          "cues": [
+            "Spacing: 2 y 3 abiertos en las alas"
+          ]
+        },
+        {
+          "label": "Handover 4→1 y bloqueo 5",
+          "moves": [
+            {"player": "4", "path": [{"x": 0.28, "y": 0.38}]},
+            {"player": "5", "path": [{"x": 0.70, "y": 0.28}]}
+          ],
+          "passes": [
+            {"from": "4", "to": "1", "type": "handoff"}
+          ],
+          "screens": [
+            {"screener": "5", "for": "1", "position": {"x": 0.68, "y": 0.30}}
+          ]
+        }
+      ],
+      "meta": {
+        "court": "half",
+        "speed": 1.0,
+        "tags": ["u13", "entrada", "horns"]
+      }
+    }
+  ]
+}
