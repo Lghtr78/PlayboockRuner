@@ -3,9 +3,24 @@ import { exportCSV, clear as clearTelemetry } from './telemetry.js';
 
 const btn = document.getElementById('btnToggleAdmin');
 const panel = document.getElementById('panel-admin');
+// When the admin button is clicked, toggle the visibility of the admin panel.  If the
+// inline style is blank (default), treat it as hidden to ensure the first click opens
+// the panel.  This improves reliability across browsers where the style may be an
+// empty string rather than "none" by default.
 if (btn && panel) {
-  btn.addEventListener('click', () => panel.style.display = panel.style.display === 'none' ? 'block' : 'none');
-  document.addEventListener('keydown', (e)=>{ if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==='a') btn.click(); });
+  btn.addEventListener('click', () => {
+    const current = panel.style.display;
+    if (current === 'block') {
+      panel.style.display = 'none';
+    } else {
+      // Treat empty string as hidden, so clicking toggles to visible
+      panel.style.display = 'block';
+    }
+  });
+  // Keyboard shortcut Ctrl+Shift+A also toggles the admin panel
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') btn.click();
+  });
 }
 
 const inputs = {
