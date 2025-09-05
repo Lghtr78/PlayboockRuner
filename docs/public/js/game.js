@@ -1,3 +1,13 @@
+// TEST: Leer archivo plays.json y mostrarlo en consola
+fetch('public/data/plays.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log("Jugadas cargadas correctamente:", data);
+  })
+  .catch(error => {
+    console.error("Error al cargar plays.json:", error);
+  });
+
 import { loadConfig, applyDifficultyToUI } from './lib/configLoader.js';
 import { ensureTutorial } from './lib/tutorial.js';
 import { PlaysUI } from './lib/playsUI.js';
