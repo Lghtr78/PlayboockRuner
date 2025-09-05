@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basket Genios U13 – Prototipo</title>
+  <style>
+    html, body { height: 100%; overflow: hidden; }
+    body { margin: 0; background: #111; color: #fff; font-family: system-ui, Arial, sans-serif; -webkit-user-select:none; user-select:none; }
+    #topbar { display:flex; gap:12px; align-items:center; padding:8px 12px; background:#1b1f24; position:sticky; top:0; z-index:10; flex-wrap:wrap; }
+    #status { opacity:.8; font-size:14px; }
+    #panel-admin { position:fixed; right:12px; top:52px; width:340px; max-height:72vh; overflow:auto;
+                   background:#20262d; border:1px solid #333; padding:12px; border-radius:8px; display:none; }
+    #panel-admin h3 { margin:0 0 8px 0; }
+    label { font-size:12px; display:block; margin:6px 0 2px; }
+    input[type="text"], input[type="number"], select { width:100%; padding:6px; border-radius:6px; border:1px solid #444; background:#0f141a; color:#eaecef; }
+    .row { display:flex; gap:8px; }
+    .row > div { flex:1; }
+    button { background:#2d6cdf; border:none; border-radius:8px; color:white; padding:8px 12px; cursor:pointer; }
+    button.secondary { background:#374151; }
+    canvas { display:block; margin:0 auto; touch-action:none; }
+    #footer { text-align:center; padding:10px; font-size:12px; opacity:.7; }
+    #rotateHint { position:fixed; inset:0; display:none; align-items:center; justify-content:center; 
+                  background:rgba(0,0,0,.8); z-index:9999; text-align:center; padding:24px; }
+    #rotateHint .box { background:#111; border:1px solid #333; padding:16px; border-radius:12px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.0/dist/phaser.min.js"></script>
+  <!-- Loader dinámico que aplica cache-busting si hay ?v= en la URL -->
+  <script type="module" data-module-loader="true">
+    const v = new URL(location.href).searchParams.get('v');
+    const mods = [
+      './js/lib/hardReload.js',
+      './js/lib/mobileEnhancements.js',
+      './js/lib/configLoader.js', /* preload for side effects (AdminState) */
+      './js/game.js'
+    ];
+    for (const m of mods) {
+      const s = document.createElement('script');
+      s.type = 'module';
+      s.src = v ? (m + '?v=' + encodeURIComponent(v)) : m;
+      document.head.appendChild(s);
+    }
+  </script>
+</head>
+<body>
+  <div id="topbar">
+    <button id="btnToggleAdmin" class="secondary" title="Ctrl+Shift+A">Admin</button>
+    <button id="btnFull" class="secondary" title="Pantalla completa">Pantalla</button>
+    <button id="btnContrast" class="secondary" title="Alto contraste">Contraste</button>
+    <div>
+      <label for="difficulty">Dificultad</label>
+      <select id="difficulty">
+        <option value="principiante">Principiante</option>
+        <option value="intermedio">Intermedio</option>
+        <option value="avanzado">Avanzado</option>
+      </select>
+    </div>
+    <div id="status">Cargando configuración…</div>
+    <button id="btnHardReload" class="secondary" title="Vacía caché y recarga">Recarga dura</button>
+    <button id="btnHardReset" class="secondary" title="Limpia ajustes y recarga">Reset+Recarga</button>
+  </div>
+
+  <div id="panel-admin">
+    <h3>Panel Administrador</h3>
+    <div class="row">
+      <div><label>Fondo cancha</label><input id="inpBg" type="text" placeholder="#2A2E35" /></div>
+      <div><label>Color líneas</label><input id="inpLines" type="text" placeholder="#FFFFFF" /></div>
+    </div>
+    <div class="row">
+      <div><label>Color ofensiva</label><input id="inpOff" type="text" placeholder="#FFFFFF" /></div>
+      <div><label>Color defensiva</label><input id="inpDef" type="text" placeholder="#000000" /></div>
+    </div>
+    <div class="row">
+      <div><label>Radio jugador (px)</label><input id="inpRadius" type="number" min="10" max="60" step="1" /></div>
+      <div><label>FPS objetivo</label><input id="inpFps" type="number" min="30" max="120" step="1" /></div>
+    </div>
+    <div style="margin-top:8px; display:flex; gap:8px;">
+      <button id="btnApply">Aplicar</button>
+      <button id="btnReset" class="secondary">Reiniciar</button>
+    </div>
+  </div>
+
+  <div id="rotateHint"><div class="box">🔁 Para una mejor experiencia, rotá tu dispositivo a <b>horizontal</b>.<br/>Tocá para continuar.</div></div>
+  <div id="footer">Sprint 0/1 – Prototipo con ayudas y telemetría. Atajo Admin: Ctrl+Shift+A</div>
+</body>
+</html>
