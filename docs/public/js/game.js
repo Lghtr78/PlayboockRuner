@@ -36,15 +36,30 @@ import './lib/adminPanel.js';
  * Espera hasta que exista el canvas de Phaser.
  * Evita null cuando el DOM aún no tiene el <canvas>.
  */
-function waitForCanvas(cb, tries = 0) {
-  const canvas = document.querySelector('canvas');
-  if (canvas) return cb(canvas);
-  if (tries > 120) { // ~2s @ 60fps
-    console.warn('No pude encontrar el canvas a tiempo');
-    return;
+function waitForCanvas(cb, timeoutMs = 5000) {
+  const start = Date.now();
+
+  function check() {
+    const canvas = document.querySelector('canvas');
+    if (canvas) {
+      cb(canvas); // el canvas está listo
+      return;
+    }
+
+    // si pasaron más de 5 segundos sin encontrar el canvas
+    if (Date.now() - start > timeoutMs) {
+      console.error('Error: el canvas no apareció a tiempo');
+      return;
+    }
+
+    // si todavía no apareció, seguimos esperando
+    requestAnimationFrame(check);
   }
-  requestAnimationFrame(() => waitForCanvas(cb, tries + 1));
+
+  check();
 }
+
+
 
 /**
  * Coloca a cada jugador en su posición inicial (coordenadas normalizadas 0..1).
