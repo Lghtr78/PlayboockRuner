@@ -1,24 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Basket Genios U13 – Prototipo</title>
+  <style id="mvp-visual-patch">
+  /* Reset básico */
+  html, body { margin: 0; padding: 0; }
+  body { display: block; }
+
+  /* --- Layout global --- */
+  #appLayout {
+    display: grid;
+    grid-template-columns: 260px 1fr;  /* Columna izquierda + área de juego */
+    gap: 16px;
+    align-items: start;
+  }
+  #adminColumn {
+    position: sticky; top: 12px;
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 8px;
+  }
+  #gameArea { position: relative; min-height: 70vh; }
+
+  /* --- Área de juego centrada --- */
+  canvas {
+    display: block;
+    margin: 0 auto;          /* centra horizontal */
+    max-width: 100vw;
+    height: auto;
+  }
+
+  /* --- Barra de “player” (sobre la cancha, centrada) --- */
+  #playbar {
+    position: fixed;
+    left: 50%; transform: translateX(-50%);
+    bottom: 12px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background: rgba(20,20,20,.6);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+  }
+  #playbar .label {
+    max-width: 60vw;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  /* --- Selector de dificultad compacto --- */
+  #difficulty { width: auto !important; max-width: 220px !important; }
+</style>
+
+
+
   <style>
     html, body { height: 100%; overflow: hidden; }
     body { margin: 0; background: #111; color: #fff; font-family: system-ui, Arial, sans-serif; -webkit-user-select:none; user-select:none; }
-    <!-- Controles mínimos del Playbook -->
-<div id="controls" style="display:flex; gap:12px; align-items:center; padding:8px; background:#111; color:#fff; font-family:Arial; font-size:14px; position:sticky; top:0; z-index:1000; width:100%;">
-  <label for="play-select">Jugada:</label>
-  <select id="play-select" style="cursor:pointer;"></select>
 
-  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
-    <input type="checkbox" id="mode-toggle">
-    Modo Juego (desmarcado = Demo)
-  </label>
-
-  <button id="reset-btn" style="cursor:pointer;">Reiniciar</button>
-</div>
 
 
     #topbar { display:flex; gap:12px; align-items:center; padding:8px 12px; background:#1b1f24; position:sticky; top:0; z-index:10; flex-wrap:wrap; }
@@ -73,6 +113,19 @@
     <button id="btnHardReload" class="secondary" title="Vacía caché y recarga">Recarga dura</button>
     <button id="btnHardReset" class="secondary" title="Limpia ajustes y recarga">Reset+Recarga</button>
   </div>
+  
+  <!-- Controles mínimos del Playbook -->
+<div id="controls" style="display:flex; gap:12px; align-items:center; padding:8px; background:#111; color:#fff; font-family:Arial; font-size:14px; position:sticky; top:0; z-index:1000; width:100%;">
+  <label for="play-select">Jugada:</label>
+  <select id="play-select" style="cursor:pointer;"></select>
+
+  <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+    <input type="checkbox" id="mode-toggle">
+    Modo Juego (desmarcado = Demo)
+  </label>
+
+  <button id="reset-btn" style="cursor:pointer;">Reiniciar</button>
+</div>
 
   <div id="panel-admin">
     <h3>Panel Administrador</h3>
@@ -89,10 +142,20 @@
       <div><label>FPS objetivo</label><input id="inpFps" type="number" min="30" max="120" step="1" /></div>
     </div>
     <div style="margin-top:8px; display:flex; gap:8px;">
-      <button id="btnApply">Aplicar</button>
-      <button id="btnReset" class="secondary">Reiniciar</button>
-    </div>
-  </div>
+  <button id="btnApply">Aplicar</button>
+  <button id="btnReset" class="secondary">Reiniciar</button>
+</div>
+
+<hr/>
+<label style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+  <input type="checkbox" id="uiEditToggle">
+  Editar UI (arrastrar botones)
+</label>
+<div style="margin-top:6px;">
+  <button id="uiReset" class="secondary">Reset posiciones UI</button>
+</div>
+
+</div>
 
   <div id="rotateHint"><div class="box">🔁 Para una mejor experiencia, rotá tu dispositivo a <b>horizontal</b>.<br/>Tocá para continuar.</div></div>
   <div id="footer">Sprint 0/1 – Prototipo con ayudas y telemetría. Atajo Admin: Ctrl+Shift+A</div>

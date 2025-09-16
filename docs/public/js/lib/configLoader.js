@@ -4,19 +4,31 @@ export const AdminState = {
 export async function loadConfig() {
   const status = document.getElementById('status');
   try {
-    const [game, nodes, plays] = await Promise.all([
-      fetch('../config/game.config.json').then(r=>r.json()),
-      fetch('../config/nodes.json').then(r=>r.json()),
-      fetch('../config/plays.json').then(r=>r.json())
-    ]);
-    const cfg = merge(game, AdminState.overrides);
-    status.textContent = 'Config cargada';
-    return { ...cfg, nodes, plays };
+    // Base robusta: relativa a /docs/public/index.html
+const base = new URL('../config/', window.location.href);
+
+const getJSON = async (name) => {
+  const res = await fetch(new URL(name, base));
+  if (!res.ok) throw new Error(`${name} ${res.status} ${res.url}`);
+  return res.json();
+};
+
+const [game, nodes, plays] = await Promise.all([
+  getJSON('game.config.json'),
+  getJSON('nodes.json'),
+  getJSON('plays.json')
+]);
+
+const cfg = merge(game, AdminState.overrides);
+if (status) status.textContent = 'Config cargada';
+return { ...cfg, nodes, plays };
+
   } catch (e) {
-    status.textContent = 'Error cargando config';
-    console.error(e);
-    throw e;
-  }
+  if (status) status.textContent = 'Error cargando config';
+  console.error(e);
+  throw e;
+}
+
 }
 function merge(base, overrides){ const out = structuredClone(base); if(overrides) deepMerge(out, overrides); return out; }
 function deepMerge(target, src){ for(const k in src){ if(src[k] && typeof src[k]==='object' && !Array.isArray(src[k])){ target[k]=target[k]||{}; deepMerge(target[k], src[k]); } else { target[k]=src[k]; } } }

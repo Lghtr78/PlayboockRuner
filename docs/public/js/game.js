@@ -134,10 +134,6 @@ fetch('data/plays.json')
       waitForCanvas((canvas) => positionPlayersOnCanvas(currentPlay, canvas));
     });
   })
-  .catch(err => {
-    console.error('Error al cargar plays.json:', err);
-  });
-
-    console.error("Error al cargar plays.json:", error);
-  });
-
+.catch(err => {
+  console.error('Error al cargar plays.json:', err);
+});
