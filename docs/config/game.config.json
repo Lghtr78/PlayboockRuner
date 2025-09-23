@@ -1,0 +1,81 @@
+{
+  "app": {
+    "title": "Basket Genios U13",
+    "language": "es-AR",
+    "version": "0.3.0",
+    "admin_mode_hotkey": "Ctrl+Shift+A"
+  },
+  "display": {
+    "resolution": {
+      "width": 1280,
+      "height": 720
+    },
+    "fps_target": 60,
+    "canvas_background": "#2A2E35",
+    "show_fps_counter": false
+  },
+  "court": {
+    "lines_color": "#FFFFFF",
+    "use_texture": false,
+    "texture_path": "assets/img/court_bg.png",
+    "draw_lines": true,
+    "style": {
+      "floor_color": "#E9D2AD",
+      "floor_stripe_color": "#DBBE93",
+      "floor_stripe_width": 24,
+      "floor_stripe_alpha": 0.18,
+      "paint_color": "#1484d6",
+      "lines_color": "#FFFFFF"
+    },
+    "proportions": {
+      "margin_ratio": 0.04,
+      "paint_width_ratio": 0.3,
+      "paint_height_ratio": 0.48,
+      "paint_top_ratio": 0.02,
+      "hoop_y_ratio": 0.06,
+      "ft_radius_ratio": 0.085,
+      "restricted_radius_ratio": 0.06,
+      "r3_radius_ratio": 0.78,
+      "line_thickness": 2.0
+    }
+  },
+  "players": {
+    "offense_color": "#FFFFFF",
+    "defense_color": "#000000",
+    "radius_px": 28,
+    "number_font_size": 18
+  },
+  "ball": {
+    "color": "#FF8C00",
+    "radius_px": 12
+  },
+  "difficulty": {
+    "default": "principiante",
+    "principiante": {
+      "assists": "max"
+    },
+    "intermedio": {
+      "assists": "reduced"
+    },
+    "avanzado": {
+      "assists": "none"
+    }
+  },
+  "assists": {
+    "hints_enabled": true,
+    "nodes_enabled": true,
+    "tutorial_enabled": true,
+    "telemetry_enabled": true
+  },
+  "ui": {
+    "show_plays_ui": true,
+    "animated_arrows": true
+  },
+  "overlays": {
+    "reference": {
+      "enabled": false,
+      "texture_path": "assets/img/overlay_ref.png",
+      "alpha": 0.6
+    }
+  }
+}

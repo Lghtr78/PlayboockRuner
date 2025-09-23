@@ -1,0 +1,11 @@
+[
+  {
+    "id": "pnp_simple",
+    "name": "Pick and Pop Simple",
+    "diagram": [
+      "P1 usa pantalla de P5",
+      "P5 abre a 45°",
+      "P1 pase a P5 para tiro"
+    ]
+  }
+]

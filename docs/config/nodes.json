@@ -1,0 +1,14 @@
+[
+  {
+    "id": "nodo_corte_puerta_atras",
+    "label": "Corte puerta-atrás"
+  },
+  {
+    "id": "nodo_spacing",
+    "label": "Spacing"
+  },
+  {
+    "id": "nodo_ayuda_defensiva",
+    "label": "Ayuda defensiva"
+  }
+]
