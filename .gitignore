@@ -1,0 +1,14 @@
+# deps y artefactos
+node_modules/
+dist/
+build/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# entornos/local
+.env
+.DS_Store
+Thumbs.db

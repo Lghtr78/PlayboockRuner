@@ -1,0 +1,19 @@
+{
+  "name": "platense-playbook-runner",
+  "version": "0.1.0",
+  "description": "MVP 2D táctico tipo Haxball para ejecutar jugadas de baloncesto cooperativas (5 jugadores).",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "serve": "node server.js"
+  },
+  "author": "Platense Playbook Runner",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
