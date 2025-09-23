@@ -1,0 +1,25 @@
+/* Estilos mínimos para centrar el canvas y quitar márgenes */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #0b1726; /* fondo oscuro */
+  color: #fff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+#game {
+  /* El JS ajusta width/height según la ventana manteniendo 800x600 virtuales */
+  outline: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  image-rendering: pixelated;
+}
