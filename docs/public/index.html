@@ -129,18 +129,44 @@
 
   <div id="panel-admin">
     <h3>Panel Administrador</h3>
-    <div class="row">
-      <div><label>Fondo cancha</label><input id="inpBg" type="text" placeholder="#2A2E35" /></div>
-      <div><label>Color líneas</label><input id="inpLines" type="text" placeholder="#FFFFFF" /></div>
+    <fieldset>
+  <legend>Colores</legend>
+  <div class="row">
+    <div>
+      <label for="inpBg">Fondo cancha</label>
+      <input id="inpBg" type="text" placeholder="#2A2E35" />
     </div>
-    <div class="row">
-      <div><label>Color ofensiva</label><input id="inpOff" type="text" placeholder="#FFFFFF" /></div>
-      <div><label>Color defensiva</label><input id="inpDef" type="text" placeholder="#000000" /></div>
+    <div>
+      <label for="inpLines">Color líneas</label>
+      <input id="inpLines" type="text" placeholder="#FFFFFF" />
     </div>
-    <div class="row">
-      <div><label>Radio jugador (px)</label><input id="inpRadius" type="number" min="10" max="60" step="1" /></div>
-      <div><label>FPS objetivo</label><input id="inpFps" type="number" min="30" max="120" step="1" /></div>
+  </div>
+  <div class="row">
+    <div>
+      <label for="inpOff">Color ofensiva</label>
+      <input id="inpOff" type="text" placeholder="#FFFFFF" />
     </div>
+    <div>
+      <label for="inpDef">Color defensiva</label>
+      <input id="inpDef" type="text" placeholder="#000000" />
+    </div>
+  </div>
+</fieldset>
+
+    <fieldset>
+  <legend>Rendimiento</legend>
+  <div class="row">
+    <div>
+      <label for="inpRadius">Radio jugador (px)</label>
+      <input id="inpRadius" type="number" min="10" max="60" step="1" />
+    </div>
+    <div>
+      <label for="inpFps">FPS objetivo</label>
+      <input id="inpFps" type="number" min="30" max="120" step="1" />
+    </div>
+  </div>
+</fieldset>
+
     <div style="margin-top:8px; display:flex; gap:8px;">
   <button id="btnApply">Aplicar</button>
   <button id="btnReset" class="secondary">Reiniciar</button>
