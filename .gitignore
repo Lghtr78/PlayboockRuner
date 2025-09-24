@@ -12,3 +12,5 @@ pnpm-debug.log*
 .env
 .DS_Store
 Thumbs.db
+# Ignorar respaldos locales en docs/public
+docs/public/*.backup.*
