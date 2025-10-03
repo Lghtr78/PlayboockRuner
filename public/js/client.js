@@ -165,9 +165,15 @@ function computeLayout() {
   };
 }
 
+function projectServerYToHalfCourt(y) {
+  const SCALE_Y = HALF_H / VIRTUAL_H;
+  return HALF_Y_MIN + (y - HALF_Y_MIN) * SCALE_Y;
+}
+
 function worldToCanvas(x, y, layout) {
   const cx = (x - HALF_X_MIN) / HALF_W;
-  const clampedY = Math.max(HALF_Y_MIN, Math.min(HALF_Y_MAX, y));
+  const projectedY = projectServerYToHalfCourt(y);
+  const clampedY = Math.max(HALF_Y_MIN, Math.min(HALF_Y_MAX, projectedY));
   const cy = (clampedY - HALF_Y_MIN) / HALF_H;
 
   return {
