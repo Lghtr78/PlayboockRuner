@@ -151,11 +151,12 @@ function computeLayout() {
 
   const extraH = availH - courtH;
   const finalCourtY = courtY + Math.max(0, extraH / 2);
+  const finalCourtX = courtX + Math.max(0, (availW - courtW) / 2);
 
   const unit = courtW / HALF_W;
 
   return {
-    x: courtX,
+    x: finalCourtX,
     y: finalCourtY,
     w: courtW,
     h: courtH,
